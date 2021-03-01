@@ -187,7 +187,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://cxiansheng.github.io/2021/02/25/nodejs%E5%AD%A6%E4%B9%A0/1.jpg" alt="1"></p>
+        <p><img src="/nodejs%E5%AD%A6%E4%B9%A0/1.jpg" alt="1"></p>
         
       
 
@@ -525,11 +525,11 @@
 
 
 <ul>
-<li><p><img src="http://cxiansheng.github.io/2021/01/17/redis%E5%AD%A6%E4%B9%A0/Users\Cxiansheng\AppData\Roaming\Typora\typora-user-images\image-20210108135408987.png" alt="image-20210108135408987"></p>
+<li><p><img src="/2021/01/17/redis%E5%AD%A6%E4%B9%A0/Users\Cxiansheng\AppData\Roaming\Typora\typora-user-images\image-20210108135408987.png" alt="image-20210108135408987"></p>
 <p>如果执行<code> sdscat(s, &quot; Cluster&quot;);</code></p>
 <p>目前s的空间不足以拼接，遂sdscat 会先扩展s的空间，然后再执行拼接操作。</p>
 <p>拼接完成后的SDS如下图：</p>
-<p><img src="http://cxiansheng.github.io/2021/01/17/redis%E5%AD%A6%E4%B9%A0/Users\Cxiansheng\AppData\Roaming\Typora\typora-user-images\image-20210108135429257.png" alt="image-20210108135429257"></p>
+<p><img src="/2021/01/17/redis%E5%AD%A6%E4%B9%A0/Users\Cxiansheng\AppData\Roaming\Typora\typora-user-images\image-20210108135429257.png" alt="image-20210108135429257"></p>
 <p><strong>sdscat 不仅对这个SDS 进行了拼接的操作，还为SDS分配了13字节的未使用空间，并且拼接之后的字符串也正好是13字节长， 这不是BUG也不是巧合，她和SDS的空间分配策略有关</strong></p>
 </li>
 </ul>
@@ -560,11 +560,11 @@
 </ul>
 </li>
 <li><p>案例：</p>
-<p><img src="http://cxiansheng.github.io/2021/01/17/redis%E5%AD%A6%E4%B9%A0/Users\Cxiansheng\AppData\Roaming\Typora\typora-user-images\image-20210108135452772.png" alt="image-20210108135452772"></p>
+<p><img src="/2021/01/17/redis%E5%AD%A6%E4%B9%A0/Users\Cxiansheng\AppData\Roaming\Typora\typora-user-images\image-20210108135452772.png" alt="image-20210108135452772"></p>
 <p>执行<code>sdscat(s, &quot; Cluster&quot;);</code></p>
-<p><img src="http://cxiansheng.github.io/2021/01/17/redis%E5%AD%A6%E4%B9%A0/Users\Cxiansheng\AppData\Roaming\Typora\typora-user-images\image-20210108135505730.png" alt="image-20210108135505730"></p>
+<p><img src="/2021/01/17/redis%E5%AD%A6%E4%B9%A0/Users\Cxiansheng\AppData\Roaming\Typora\typora-user-images\image-20210108135505730.png" alt="image-20210108135505730"></p>
 <p>执行<code>sdscat(s, &quot; Tutorial&quot;);</code></p>
-<p><img src="http://cxiansheng.github.io/2021/01/17/redis%E5%AD%A6%E4%B9%A0/Users\Cxiansheng\AppData\Roaming\Typora\typora-user-images\image-20210108135514445.png" alt="image-20210108135514445"></p>
+<p><img src="/2021/01/17/redis%E5%AD%A6%E4%B9%A0/Users\Cxiansheng\AppData\Roaming\Typora\typora-user-images\image-20210108135514445.png" alt="image-20210108135514445"></p>
 </li>
 </ul>
 <p><strong>注意三张图中，free，len，buf的内容变化！</strong></p>
@@ -575,14 +575,14 @@
 </li>
 <li><p>案例：</p>
 <p>sdstrim 函数接收一个SDS和一个C 字符串作为参数，移出SDS中所有在C 字符串中出现过的字符。</p>
-<p><img src="http://cxiansheng.github.io/2021/01/17/redis%E5%AD%A6%E4%B9%A0/Users\Cxiansheng\AppData\Roaming\Typora\typora-user-images\image-20210108135538868.png" alt="image-20210108135538868"></p>
+<p><img src="/2021/01/17/redis%E5%AD%A6%E4%B9%A0/Users\Cxiansheng\AppData\Roaming\Typora\typora-user-images\image-20210108135538868.png" alt="image-20210108135538868"></p>
 <p>执行<code>sdstrim(s, &quot;XY&quot;); //移出SDS字符串中所有的&#39;X&#39;和&#39;Y&#39;</code></p>
-<p><img src="http://cxiansheng.github.io/2021/01/17/redis%E5%AD%A6%E4%B9%A0/Users\Cxiansheng\AppData\Roaming\Typora\typora-user-images\image-20210108135552579.png" alt="image-20210108135552579"></p>
+<p><img src="/2021/01/17/redis%E5%AD%A6%E4%B9%A0/Users\Cxiansheng\AppData\Roaming\Typora\typora-user-images\image-20210108135552579.png" alt="image-20210108135552579"></p>
 <p>观察free的值变化，执行了sdstrim之后SDS并没有释放多出来的8字节口径建，而是将这8字节空间作为未使用空间保留在了SDS中，之后如果要对SDS进行增长操作的话，就能用上了。</p>
 </li>
 </ul>
 <p>  接着执行<code>sdscat(s, &quot; Redis&quot;)；</code></p>
-<p>  <img src="http://cxiansheng.github.io/2021/01/17/redis%E5%AD%A6%E4%B9%A0/Users\Cxiansheng\AppData\Roaming\Typora\typora-user-images\image-20210108135602380.png" alt="image-20210108135602380"></p>
+<p>  <img src="/2021/01/17/redis%E5%AD%A6%E4%B9%A0/Users\Cxiansheng\AppData\Roaming\Typora\typora-user-images\image-20210108135602380.png" alt="image-20210108135602380"></p>
 <p>  通过惰性空间释放策略，SDS避免了缩短字符串时所需的内存你分配操作，并为将来可能有的正常操作提供了优化。</p>
 <p>  当然，SDS也提供了响应的API（<strong>学习源码时留意一下</strong>），让我们可以真正的释放SDS的未使用空间， 所以不用担心策略造成的内存浪费</p>
 <h3><span id="3-二进制安全">3、二进制安全</span></h3><p>注意到SDS 数据结构中的buf数组吗？注释写的是<strong>字节数组</strong>而非<strong>字符数组</strong></p>
